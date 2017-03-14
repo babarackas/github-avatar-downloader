@@ -15,14 +15,29 @@ var options =
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
-  request(options, function (error, response, body) {
+  request.get(options, function (error, response, body) {
+    // if (error) {
+    //   console.log("Error", err);
+    //   return false;
+    // }
+    // if (response && response.statusCode !== 200) {
+    //   console.log("Response was not 200!", response);
+    //   return false;
+    // }
+
     var data = JSON.parse(body);
+
+    //data = data[0].avatar_url;
+    for (var key in data){
+      console.log(data[key].avatar_url);
+      };
+
+
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('data', data); // Print the HTML for the Google homepage.
-});
-
-  }
+  //console.log('data', data);
+  });
+}
 
 
 getRepoContributors("jquery", "jquery", function(err, result) {
